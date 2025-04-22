@@ -33,6 +33,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+const BASE = import.meta.env.VITE_API_BASE_URL;
 
 // Form schema for adding points
 const addPointsSchema = z.object({
@@ -56,12 +57,12 @@ export default function AddPointsDialog({ open, onOpenChange }: AddPointsDialogP
 
   // Fetch children data
   const { data: children, isLoading: isLoadingChildren } = useQuery<User[]>({
-    queryKey: ["/api/children"],
+    queryKey: [`${BASE}/api/children`],
   });
   
   // Fetch rules
   const { data: rules, isLoading: isLoadingRules } = useQuery<Rule[]>({
-    queryKey: ["/api/rules"],
+    queryKey: [`${BASE}/api/rules`],
   });
   
   // Filter rules based on action type
@@ -97,7 +98,7 @@ export default function AddPointsDialog({ open, onOpenChange }: AddPointsDialogP
   // Add points mutation
   const addPointsMutation = useMutation({
     mutationFn: async (data: AddPointsFormValues) => {
-      await apiRequest("POST", "/api/activities", {
+      await apiRequest("POST", `${BASE}/api/activities`, {
         childId: parseInt(data.childId),
         description: data.description,
         points: data.points,
@@ -105,8 +106,8 @@ export default function AddPointsDialog({ open, onOpenChange }: AddPointsDialogP
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/activities"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/children"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/activities`] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/children`] });
       
       toast({
         title: "Points updated",

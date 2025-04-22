@@ -18,6 +18,9 @@ import RedeemedRewardsPage from "./pages/child/redeemed-rewards";
 import ParentReports from "./pages/parent/report";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+const BASE = import.meta.env.VITE_API_BASE_URL;
+
+
 
 // Create a protected route component
 function ProtectedRoute({ 
@@ -61,7 +64,7 @@ function App() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await fetch('/api/user', {
+        const response = await fetch(`${BASE}/api/user`, {
           credentials: 'include'
         });
         

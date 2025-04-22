@@ -31,7 +31,7 @@ const childSchema = z.object({
   age: z.number().int().min(1, "Age must be at least 1").max(100, "Age must be at most 100"),
   imageUrl: z.string().optional(),
 });
-
+const BASE = import.meta.env.VITE_API_BASE_URL;
 type ChildFormValues = z.infer<typeof childSchema>;
 
 interface ChildDialogProps {
@@ -68,13 +68,13 @@ export default function ChildDialog({ open, onOpenChange, mode = "add", initialD
   const childMutation = useMutation({
     mutationFn: async (data: ChildFormValues) => {
         if (mode === "edit" && initialData?.id) {
-            return await apiRequest("PUT", `/api/children/${initialData.id}`, data);
+            return await apiRequest("PUT", `${BASE}/api/children/${initialData.id}`, data);
         } else {
-            return await apiRequest("POST", "/api/children", data);
+            return await apiRequest("POST", `${BASE}/api/children`, data);
         }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/children"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/children`] });
       
       toast({
         title: mode === "edit" ? "Child updated" : "Child added",

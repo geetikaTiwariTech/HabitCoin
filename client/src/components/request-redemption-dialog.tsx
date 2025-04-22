@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-
+const BASE = import.meta.env.VITE_API_BASE_URL;
 // Form schema for redemption request
 const redemptionSchema = z.object({
   note: z.string().optional(),
@@ -55,13 +55,13 @@ export default function RequestRedemptionDialog({
   // Create redemption request mutation
   const redemptionMutation = useMutation({
     mutationFn: async (data: RedemptionFormValues) => {
-      await apiRequest("POST", "/api/redemption-requests", {
+      await apiRequest("POST", `${BASE}/api/redemption-requests`, {
         rewardId: reward.id,
         note: data.note,
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/redemption-requests"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/redemption-requests`] });
       
       toast({
         title: "Request submitted",

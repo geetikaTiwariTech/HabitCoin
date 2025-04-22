@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+const BASE = import.meta.env.VITE_API_BASE_URL;
 // Form schema for adding child
 const addChildSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
@@ -55,10 +55,10 @@ export default function AddChildDialog({ open, onOpenChange }: AddChildDialogPro
   // Add child mutation
   const addChildMutation = useMutation({
     mutationFn: async (data: AddChildFormValues) => {
-      await apiRequest("POST", "/api/children", data);
+      await apiRequest("POST", `${BASE}/api/children`, data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/children"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/children`] });
       
       toast({
         title: "Child added",

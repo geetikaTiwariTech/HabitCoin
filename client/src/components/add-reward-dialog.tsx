@@ -30,7 +30,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useQuery } from "@tanstack/react-query";
 import { getAmazonProducts } from "@/lib/getAmazonProducts";
-
+const BASE = import.meta.env.VITE_API_BASE_URL;
 
 const rewardSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -69,13 +69,13 @@ export default function AddRewardDialog({ open, onOpenChange, reward = null,onRe
   const rewardMutation = useMutation({
     mutationFn: async (data: RewardFormValues) => {
       if (isEditing && reward) {
-        await apiRequest("PUT", `/api/rewards/${reward.id}`, data);
+        await apiRequest("PUT", `${BASE}/api/rewards/${reward.id}`, data);
       } else {
-        await apiRequest("POST", "/api/rewards", data);
+        await apiRequest("POST", `${BASE}/api/rewards`, data);
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/rewards"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE}/api/rewards`] });
       toast({
         title: isEditing ? "Reward updated" : "Reward added",
         description: isEditing ? "Reward has been updated successfully." : "Reward has been created successfully.",

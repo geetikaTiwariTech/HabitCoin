@@ -11,6 +11,7 @@ import {
   import { useQuery } from "@tanstack/react-query";
   import { Award } from "lucide-react";
   import BadgeIcon from "@/components/badge-icon";
+  const BASE = import.meta.env.VITE_API_BASE_URL;
   interface ViewChildDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
@@ -26,9 +27,9 @@ import {
   export default function ViewChildDialog({ open, onOpenChange, child }: ViewChildDialogProps) {
     // Fetch rewards
     const { data: redemptions } = useQuery({
-        queryKey: ["/api/redemption-requests"],
+        queryKey: [`${BASE}/api/redemption-requests`],
         queryFn: async () => {
-        const res = await fetch(`/api/redemption-requests`, { credentials: "include" });
+        const res = await fetch(`${BASE}/api/redemption-requests`, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to fetch redemption requests");
         return res.json();
         },
@@ -39,9 +40,9 @@ import {
   
     // Fetch badges
     const { data: badges } = useQuery({
-      queryKey: ["/api/child-badges", child.id],
+      queryKey: [`${BASE}/api/child-badges`, child.id],
       queryFn: async () => {
-        const res = await fetch(`/api/child-badges/${child.id}`, { credentials: "include" });
+        const res = await fetch(`${BASE}/api/child-badges/${child.id}`, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to fetch badges");
         
         return res.json();
