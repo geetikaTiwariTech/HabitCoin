@@ -4,8 +4,7 @@
 
 @layer base {
   * {
-    @apply border border-gray-200; /* ✅ Safe option */
-
+    @apply border-border;
   }
 
   body {

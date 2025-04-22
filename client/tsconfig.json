@@ -1,9 +1,21 @@
 {
-    "extends": "../tsconfig.base.json",
-    "compilerOptions": {
-      "jsx": "react-jsx",
-      "types": ["vite/client"]
-    },
-    "include": ["src"]
-  }
-  
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
+    "noEmit": true,
+    "module": "ESNext",
+    "strict": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
+    "baseUrl": "."
+  },
+  "include": ["src"]
+}
+
+
