@@ -23,7 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-export const BASE = import.meta.env.VITE_API_BASE_URL;
+
 const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -76,7 +76,7 @@ export default function AuthPage() {
   // Handle form submissions
   const onLoginSubmit = async (data: z.infer<typeof loginSchema>) => {
     try {
-      const response = await fetch(`${BASE}/api/login`, {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ export default function AuthPage() {
   const onRegisterSubmit = async (data: any) => {
     try {
       // Always register as parent
-      const response = await fetch(`${BASE}/api/register`, {
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
