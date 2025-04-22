@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
       "dev": "tsx index.ts",
-      "build": "cd ../client && npm run build && cd ../server && esbuild index.ts --platform=node --bundle --format=esm --outdir=dist",
+      "build": "cd ../client && npm run build && cd ../server && esbuild index.ts --platform=node --bundle --format=esm --outdir=dist --external:drizzle-orm/pg-core --external:drizzle-zod --external:zod",
       "start": "NODE_ENV=production node dist/index.js",
       "db:push": "drizzle-kit push"
     },
