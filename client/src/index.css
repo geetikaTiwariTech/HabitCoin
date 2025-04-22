@@ -4,7 +4,7 @@
 @import "./theme.css"; /* ✅ Add this */
 @layer base {
   * {
-    @apply border; /* applies border width */
+    
     border-color: hsl(var(--border)); /* manually apply color */
   }
 
