@@ -4,7 +4,8 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border; /* applies border width */
+    border-color: hsl(var(--border)); /* manually apply color */
   }
 
   body {
