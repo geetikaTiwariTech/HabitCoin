@@ -1,11 +1,15 @@
 {
-    "extends": "../tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "./dist",
-        "rootDir": "./",
-        "noEmit": true
+      "target": "ES2022",
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "outDir": "dist",
+      "rootDir": "./",
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "strict": true,
+      "skipLibCheck": true
     },
-    "include": [
-        "*.ts"
-    ]
-}
+    "include": ["index.ts", "**/*.ts"]
+  }
+  
