@@ -13,9 +13,11 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["../shared/*"],
+      "@assets/*": ["../attached_assets/*"]
+    }
   },
   "include": ["src"]
 }
-
-

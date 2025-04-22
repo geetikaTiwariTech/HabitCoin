@@ -20,10 +20,6 @@ export default defineConfig({
     outDir: "dist", // defaults to client/dist
     emptyOutDir: true,
     target: 'esnext',  // Ensures that esbuild knows to handle ESM syntax
-    esbuild: {
-      loader: 'ts',  // Specify loader type (TS in this case)
-      target: 'esnext', // Ensure compatibility with ESM
-    },
     commonjsOptions: {
         include: [/node_modules/],
     },

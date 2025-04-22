@@ -8,8 +8,13 @@
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "strict": true,
-      "skipLibCheck": true
+      "skipLibCheck": true,
+      "baseUrl": ".",
+      "paths": {
+        "@shared/*": ["../shared/*"]
+      },
+      "typeRoots": ["./types", "../node_modules/@types"]
     },
-    "include": ["index.ts", "**/*.ts"]
+    "include": ["index.ts", "**/*.ts", "types"]
   }
   
