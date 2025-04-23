@@ -1,0 +1,12 @@
+name = "habitcoin"
+compatibility_date = "2024-04-23"
+
+[build]
+command = "npm install && npm run build"
+
+[site]
+bucket = "./client/dist"
+entry-point = "./functions"
+
+[functions]
+directory = "./functions"
