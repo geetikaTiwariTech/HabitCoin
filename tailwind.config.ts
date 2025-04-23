@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import theme from "./theme.json"; // assuming you keep it at root
 export default {
   darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}","./client/src/theme.css"],
   // theme: {
   //   extend: {
   //     borderRadius: {
